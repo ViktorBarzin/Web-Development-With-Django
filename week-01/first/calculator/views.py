@@ -20,7 +20,7 @@ def multiply(request, n, m):
 
 
 def power(request, n, m):
-    result = int(n) * int(m)
+    result = int(n) ** int(m)
     if request.GET.get('format') == 'json':
         return JsonResponse({'result':result})
     return HttpResponse(result)
@@ -35,10 +35,15 @@ def fact(request, n):
 
 
 def factorial(n):
-    if n <= 1:
-        return 1
-    return n * factorial(n - 1)
-
+    # if n <= 1:
+    #     return 1
+    # return n * factorial(n - 1)
+    i = 1
+    result = 1
+    while i <= n:
+        result *= i
+        i += 1
+    return result
 
 def format_to_json(inp):
     pass
