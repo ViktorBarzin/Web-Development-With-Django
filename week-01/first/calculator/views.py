@@ -35,15 +35,9 @@ def fact(request, n):
 
 
 def factorial(n):
-    # if n <= 1:
-    #     return 1
-    # return n * factorial(n - 1)
-    i = 1
-    result = 1
-    while i <= n:
-        result *= i
-        i += 1
-    return result
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
 
 def format_to_json(inp):
     pass
