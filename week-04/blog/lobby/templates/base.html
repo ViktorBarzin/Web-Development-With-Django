@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        {# TODO: uncomment the theme below after finishing development #}
+         <link rel="stylesheet" type="text/css" href="{% static '/css/theme-base.css' %}" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+        <link rel="shortcut icon" href="images/favicon.png">
+        <title>POLO | The Multi-Purpose HTML5 Template</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}" type="text/css" rel="stylesheet">
+        <link href="{% static 'vendor/animateit/animate.min.css' %}" rel="stylesheet">
+
+        <!-- Vendor css -->
+        <link href="{% static 'vendor/owlcarousel/owl.carousel.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+        <!-- Template base -->
+        {# <link href="{% static 'css/theme-base.css' %}" rel="stylesheet"> #}
+
+
+        <!-- Template elements -->
+        <link href="{% static 'css/theme-elements.css' %}" rel="stylesheet">
+
+        <!-- Responsive classes -->
+        <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+        <!-- Template color -->
+        <link href="{% static 'css/color-variations/blue.css' %}" rel="stylesheet" type="text/css" media="screen" title="blue">
+
+        <!-- LOAD GOOGLE FONTS -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+
+        <!-- BLOG FONT & STYLE -->
+        <link href="http://fonts.googleapis.com/css?family=Damion" rel="stylesheet" type="text/css">
+        <link href="{% static 'homepages/blog/css/style-blog.css' %}" media="screen" rel="stylesheet" type="text/css" />
+
+        <!--VENDOR SCRIPT-->
+        <script src="{% static 'vendor/jquery/jquery-1.11.2.min.js' %}"></script>
+        <script src="{% static 'vendor/plugins-compressed.js' %}"></script>
+
+    </head>
+
+    </head>
+        {% block content %}
+        {% endblock content %}
+</html>

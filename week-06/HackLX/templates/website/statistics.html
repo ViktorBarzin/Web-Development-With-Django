@@ -1,0 +1,10 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+    <h2>Top categories: </h2>
+      {% for category, count in categories_result.items %}
+        {{ category }}: {{ count }} </br>
+      {% endfor %}
+    </div>
+{% endblock content %}
