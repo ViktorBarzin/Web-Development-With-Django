@@ -12,6 +12,7 @@
 3. Installs npm and setups bower to install bower_components.
 
 `sudo chmod +x install-libs.sh`
+
 `sudo chmod +x setup-loki.sh`
 
 `./install-libs.sh`
