@@ -18,9 +18,10 @@
 1. Creates virtual env named "loki"
 2. Creates user postgres and grants him permission to project db
 **1 Creates db named loki and does all the required setup steps
-3. Installs npm and setups bower to install bower_components.
+3. Installs npm and setups bower to install bower components.
+4. Installs all the required apps/libs
 
-#### Go to Loki/ and run `python manage.py runserver`
+#### When done, find `manage.py` file and run `python manage.py runserver`
 ####  Should be up with all the jquery stuff
 
 #### If something does not work, repeat the proccess as root
