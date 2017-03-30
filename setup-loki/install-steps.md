@@ -16,9 +16,10 @@
 `sudo chmod +x setup-loki.sh`
 
 `./install-libs.sh`
+
 `source setup-libs.sh`
 
-##### Go to Loki/ and run `python manage.py runserver`
-#####  Should be up with all the jquery stuff
+#### Go to Loki/ and run `python manage.py runserver`
+####  Should be up with all the jquery stuff
 
-##### If something does not work, repeat the proccess as root
+#### If something does not work, repeat the proccess as root
