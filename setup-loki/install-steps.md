@@ -5,12 +5,7 @@
 1. Internet access
 2. root privileges (to install apps and libs)
 
-## Side effects:
-1. Creates virtual env named "loki"
-2. Creates user postgres and grants him permission to project db
-**1 Creates db named loki and does all the required setup steps
-3. Installs npm and setups bower to install bower_components.
-
+## Run the following commands from within the Loki/ folder
 `sudo chmod +x install-libs.sh`
 
 `sudo chmod +x setup-loki.sh`
@@ -18,6 +13,12 @@
 `./install-libs.sh`
 
 `source setup-libs.sh`
+
+## Side effects:
+1. Creates virtual env named "loki"
+2. Creates user postgres and grants him permission to project db
+**1 Creates db named loki and does all the required setup steps
+3. Installs npm and setups bower to install bower_components.
 
 #### Go to Loki/ and run `python manage.py runserver`
 ####  Should be up with all the jquery stuff
