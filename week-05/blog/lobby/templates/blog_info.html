@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body class="wide">
+    <!-- WRAPPER -->
+    <div class="wrapper">
+        <!-- HEADER -->
+        <header id="header" class="header-transparent" />
+            <!-- END: HEADER -->
+
+            <!-- PAGE TITLE -->
+            <section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url(images/parallax/page-title-parallax.jpg);">
+                <div class="container">
+                    <div class="page-title col-md-6">
+                        <h3>{{ blogpost.title }}</h1>
+                        <span>Work is easy when you have all tools around you!</span>
+                    </div>
+                    <div class="breadcrumb col-md-2">
+                        <ul>
+                            <li><a href="{% url 'index' %}"><i class="fa fa-home"></i></a>
+                            </li>
+                            <li><a href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li><a href="#">{{ blogpost.title }}</a>
+                            </li>
+                            <li class="active"><a href="#">Page title version</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- END: PAGE TITLE -->
+
+
+            <section class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="post-content post-classic post-content-single col-md-7">
+
+                            <div class="post-item">
+                                <div class="post-image">
+                                    <a href="#">
+                                        <img alt="" src="{% static 'images/blog/3.jpg' %}">
+                                    </a>
+                                </div>
+                                <div class="post-content-details">
+                                    <div class="post-title">
+                                        <h4>{{ blogpost.title }}</h4>
+                                    </div>
+                                    <div class="post-info">
+                                        <span class="post-autor">Post by: <a href="#">{{ blogpost.author.email|default:'admin' }}</a></span>
+                                        {# <span class="post-category">in <a href="#">Productivity</a></span> #}
+                                    </div>
+                                    <div class="post-description">
+                                        <p>{{ blogpost.content }}</p>
+                                        <blockquote>
+                                            <p>The world is a dangerous place to live; not because of the people who are evil, but because of the people who don't do anything about it.</p>
+                                            <small>by <cite>Albert Einstein</cite></small>
+                                        </blockquote>
+                                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id dolor dui, dapibus gravida elit. Donec consequat laoreet sagittis. Suspendisse ultricies ultrices viverra. Morbi rhoncus laoreet tincidunt. Mauris interdum convallis metus. Suspendisse vel lacus est, sit amet tincidunt erat. Etiam purus sem, euismod eu vulputate eget, porta quis sapien. Donec tellus est, rhoncus vel scelerisque id, iaculis eu nibh.</p>
+
+
+                                        <p>Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, lectus in dapibus molestie, quam felis sollicitudin mauris, sit amet tempus velit lectus nec lorem. Nullam vel mollis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel enim dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed tincidunt accumsan massa id viverra. Sed sagittis, nisl sit amet imperdiet convallis, nunc tortor consequat tellus, vel molestie neque nulla non ligula. Proin tincidunt tellus ac porta volutpat. Cras mattis congue lacus id bibendum. Mauris ut sodales libero. Maecenas feugiat sit amet enim in accumsan.</p>
+
+                                        <p>Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat, a placerat tellus laoreet eget. Fusce vitae dui sit amet lacus rutrum convallis. Vivamus sit amet lectus venenatis est rhoncus interdum a vitae velit.</p>
+                                    </div>
+                                </div>
+                                <div class="post-meta">
+                                    <div class="post-date">
+                                        <span class="post-date">{{ blogpost.created_at|date }}</span>
+                                    </div>
+
+                                    <div class="post-comments">
+                                        <a href="#">
+                                            <i class="fa fa-comments-o"></i>
+                                            <span class="post-comments-number">{{ blogpost.comments.all|length }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="comments" class="comments">
+                                <div class="heading">
+                                    <h6 class="comments-title">Comments <small class="number">({{ blogpost.comments.all|length }})</small></h4>
+                                </div>
+
+                                {% for comment in blogpost.comments.all %}
+                                <div class="comment">
+                                    <a href="#" class="pull-left">
+                                        {# <img alt="" src="{% static 'images/team/3.jpg' %}" class="avatar"> #}
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{ comment.author.fullname }}</h4>
+                                        <h6>{{ coment.author.email }}</h6>
+                                        <p class="time">{{ comment.created_at|date }}</p>
+                                        <p>{{ comment.content }}</p>
+                                        <a href="#" class="comment-reply pull-right"><i class="fa fa-reply"></i> Reply</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div class="comment-form">
+                                <div class="heading">
+                                    <h6>Leave a comment</h4>
+                                </div>
+                                <form class="form-gray-fields" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <input type="submit" value="Post Comment">
+                                    {% comment %}
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="name" class="upper">Your Name</label>
+                                                <input type="text" aria-required="true" id="name" placeholder="Enter name" name="senderName" class="form-control required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="email" class="upper">Your Email</label>
+                                                <input type="email" aria-required="true" id="email" placeholder="Enter email" name="senderEmail" class="form-control required email">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="phone" class="upper">Your Phone</label>
+                                                <input type="text" aria-required="true" id="phone" placeholder="Enter phone" name="phone" class="form-control required">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group text-center">
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>&nbsp;Post comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endcomment %}
+                                </form>
+                            </div>
+                        </div>
+                        <div class="sidebar sidebar-modern col-md-1">
+
+
+                            <!--widget tags -->
+                            <div class="widget clearfix widget-tags">
+                                <h6 class="widget-title">Tags</h4>
+                                <div class="tags">
+                                    {% for tag in blogpost.tags.all %}
+                                    <a href="#">{{ tag }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!--end: widget tags -->
+                        </div>
+                    </div>
+                </div> -->
+            </section>
+            <!-- END: SECTION -->
+
+
+    </div>
+    <!-- END: WRAPPER -->
+
+    <!-- GO TOP BUTTON -->
+    <a class="gototop gototop-button" href="#"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="{% static 'js/theme-functions.js' %}"></script>
+
+    <!-- Custom js file -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+{% endblock content %}
