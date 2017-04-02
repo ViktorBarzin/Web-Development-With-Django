@@ -21,3 +21,8 @@ class UserCanUpdateOrDeleteOfferMixin(BaseMixin):
 
 class LoginRequiredMixin(LoginRequiredMixin):
     login_url = reverse_lazy('website:login')
+
+
+class SuperUserRequiredMixin(BaseMixin):
+    def test_func(self):
+        return self.request.user.is_superuser and super().test_func()

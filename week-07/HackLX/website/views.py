@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
-from .mixins import LoginRequiredMixin, UserCanUpdateOrDeleteOfferMixin
+from .mixins import LoginRequiredMixin, UserCanUpdateOrDeleteOfferMixin, SuperUserRequiredMixin
 from .models import Offer, Category
 from .forms import CreateOfferModelForm, RegisterModelForm, UpdateOfferModelForm
 
@@ -33,6 +33,7 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         # offer = form.save(commit=False)
         # offer.author = self.request.user
+
         form.instance.author = self.request.user
         return super().form_valid(form)
 
@@ -64,7 +65,7 @@ class OfferListView(ListView):
 
 class PendingOffersView(ListView):
     model = Offer
-    template_name = 'website/index.html'
+    template_name = 'website/pending_offers.html'
     queryset = Offer.objects.filter(choices='pending')
 
 
