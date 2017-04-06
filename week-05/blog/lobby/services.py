@@ -5,9 +5,13 @@ def get_all_blogs():
     return list(BlogPost.objects.all())
 
 
-def create_blogpost(title, content, tags):
-    # Can throw exception if title > 255
+def get_all_public_posts():
+    return list(BlogPost.objects.get_public_posts())
+
+def create_blogpost(title, content, tags, is_private):
+    # Can throw exception if title length is > 255
     blog = BlogPost.objects.create(title=title, content=content)
+    blog.is_private = is_private
     for tag in tags:
         blog.tags.add(tag)
     blog.save()

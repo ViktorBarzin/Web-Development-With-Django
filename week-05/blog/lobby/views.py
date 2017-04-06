@@ -6,28 +6,36 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-from lobby.services import get_all_blogs, create_blogpost, get_blog, add_comment, create_comment, extract_tags
-from lobby.forms import BlogPostForm, CommentForm, AuthorCommentModelForm
+from lobby.services import get_all_blogs, create_blogpost, get_blog, add_comment, create_comment, extract_tags, get_all_public_posts
+from lobby.forms import BlogPostModelForm, CommentForm, AuthorCommentModelForm
 
 
 def index_view(request):
-    blogposts = get_all_blogs()
+    if request.user.is_authenticated:
+        blogposts = get_all_blogs()
+    else:
+        blogposts = get_all_public_posts()
 
     return render(request, 'index.html', locals())
 
 
+@login_required(login_url=reverse_lazy('login'))
 def create_blogpost_view(request):
-    form = BlogPostForm()
+    form = BlogPostModelForm()
+
     if request.method == 'POST':
-        form = BlogPostForm(data=request.POST)
+        form = BlogPostModelForm(data=request.POST)
 
         if form.is_valid():
             title = form.data.get('title')
             content = form.data.get('content')
             # Creating tags
-            tags_string = form.data.get('tags')
+            tags_string = form.data.get('tags', '')
             tags = extract_tags(tags_string)
-            create_blogpost(title, content, tags)
+            is_private = True if form.data.get('is_private') == 'on' else False
+
+            create_blogpost(title, content, tags, is_private)
+            # form.save()
             return redirect(reverse('index'))
     return render(request, 'create_blogpost.html', locals())
 
@@ -40,7 +48,6 @@ def blogpost_info_view(request, blog_id):
     # form = CommentForm()
     form = AuthorCommentModelForm()
     if request.method == 'POST':
-        # form = CommentForm(data=request.POST)
         form = AuthorCommentModelForm(data=request.POST)
         if form.is_valid():
             fullname = form.data.get('fullname')

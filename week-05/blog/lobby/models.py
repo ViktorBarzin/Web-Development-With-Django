@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+from .query import BlogPostQuerySet
 # Create your models here.
 
 class CreatedAtModelMixin(models.Model):
@@ -25,6 +26,9 @@ class BlogPost(CreatedAtModelMixin, models.Model):
     updated = models.DateTimeField(default=timezone.now)
     content = models.TextField()
     author = models.ManyToManyField(Author, related_name='blogposts', blank=True)
+    is_private = models.BooleanField(default=False)
+
+    objects = BlogPostQuerySet.as_manager()
 
     def __str__(self):
         return self.title

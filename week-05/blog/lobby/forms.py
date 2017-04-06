@@ -1,5 +1,5 @@
 from django import forms
-from .models import CommentAuthor
+from .models import CommentAuthor, BlogPost
 
 
 class BlogPostForm(forms.Form):
@@ -7,6 +7,11 @@ class BlogPostForm(forms.Form):
     tags = forms.CharField(max_length=500)
     content = forms.CharField(widget=forms.Textarea)
 
+
+class BlogPostModelForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        exclude = ['created_at', 'updated', 'author']
 
 class CommentForm(forms.Form):
     author_email = forms.EmailField()
