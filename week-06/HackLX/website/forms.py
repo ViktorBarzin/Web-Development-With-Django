@@ -25,3 +25,12 @@ class CreateOfferModelForm(forms.ModelForm):
         fields = ('title', 'description', 'category', 'image')
         # fields = '__all__'
 
+
+class UpdateOfferModelForm(forms.ModelForm):
+    class Meta:
+        model = Offer
+        fields = ['title', 'description', 'category', 'image']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].required = False

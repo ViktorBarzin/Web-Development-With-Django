@@ -3,11 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.edit import FormView, UpdateView, CreateView
-from django.http import HttpResponse
+from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Offer, Category
-from .forms import CreateOfferModelForm, RegisterModelForm
+from .forms import CreateOfferModelForm, RegisterModelForm, UpdateOfferModelForm
 
 
 
@@ -31,12 +31,14 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
     # method
     def post(self, request):
         form = CreateOfferModelForm(request.POST, request.FILES)
+        import ipdb; ipdb.set_trace() # BREAKPOINT
+
         if form.is_valid():
             form = form.save(commit=False)
             form.author = request.user
             form.save()
             return redirect(reverse('website:index'))
-        return redirect(reverse('website:add-offer'))
+        return HttpResponseRedirect(reverse('website:add-offer'))
 
 
 
@@ -45,27 +47,24 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
 
 class UpdateOfferView(LoginRequiredMixin, UpdateView):
     model = Offer
-    fields = ['title', 'description', 'category', 'image']
+    form_class = UpdateOfferModelForm
     template_name = 'website/add_offer.html'
     success_url = reverse_lazy('website:index')
-    # initial = {'image': model.image}
+
     def form_valid(self, form):
-        import ipdb; ipdb.set_trace() # BREAKPOINT
         return super().form_valid(form)
 
 
+
+class DeleteOfferView(LoginRequiredMixin, DeleteView):
+    model = Offer
+    template_name = 'website/index.html'
+    success_url = reverse_lazy('website:index')
 
 def index(request):
     offers = Offer.objects.select_related('category', 'author').all()
 
     return render(request, 'website/index.html', locals())
-
-
-
-def delete_offer(request, pk):
-    offer = get_object_or_404(Offer, pk=int(pk))
-    offer.delete()
-    return redirect(reverse('website:index'))
 
 def get_statistics(request):
     # TODO: Move logic in services

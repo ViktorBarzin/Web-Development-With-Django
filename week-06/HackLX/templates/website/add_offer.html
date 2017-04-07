@@ -5,6 +5,10 @@
 
 <form method="POST" enctype="multipart/form-data" action="">
   {% csrf_token %}
+  {{ form.data }}
+  {% for error in form.errors %}
+  <div> {{ error }} </div>
+  {% endfor %}
   {{form|crispy}}
   <input type="submit" value="Submit">
 </form>
