@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
+from django.views.generic.list import ListView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Offer, Category
@@ -31,18 +32,13 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
     # method
     def post(self, request):
         form = CreateOfferModelForm(request.POST, request.FILES)
-        import ipdb; ipdb.set_trace() # BREAKPOINT
 
         if form.is_valid():
             form = form.save(commit=False)
             form.author = request.user
             form.save()
             return redirect(reverse('website:index'))
-        return HttpResponseRedirect(reverse('website:add-offer'))
-
-
-
-
+        return render(request, 'website/add_offer.html', locals())
 
 
 class UpdateOfferView(LoginRequiredMixin, UpdateView):
@@ -55,16 +51,22 @@ class UpdateOfferView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-
 class DeleteOfferView(LoginRequiredMixin, DeleteView):
     model = Offer
     template_name = 'website/index.html'
     success_url = reverse_lazy('website:index')
 
-def index(request):
-    offers = Offer.objects.select_related('category', 'author').all()
 
-    return render(request, 'website/index.html', locals())
+class OfferListView(ListView):
+    model = Offer
+    template_name = 'website/index.html'
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = Offer.objects.select_related('author', 'category').all()
+        return context
+        # object_list = 1
 
 def get_statistics(request):
     # TODO: Move logic in services

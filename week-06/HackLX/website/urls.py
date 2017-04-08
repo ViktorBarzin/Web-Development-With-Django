@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from django.contrib.auth.views import login, logout
-from .views import index, get_statistics, RegisterView, CreateOfferView, UpdateOfferView, DeleteOfferView
+from .views import get_statistics, RegisterView, CreateOfferView, UpdateOfferView, DeleteOfferView, OfferListView
 
 
 
 urlpatterns = [
-    url(r'^$', index, name='index'),
+    url(r'^$', OfferListView.as_view(), name='index'),
     url(r'^login/$', login, name='login'),
     url(r'register', RegisterView.as_view(), name='register'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
