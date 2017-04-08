@@ -28,17 +28,9 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
     form_class = CreateOfferModelForm
     success_url = reverse_lazy('website:index')
 
-    # TODO: Try to just plugin and add request.user rather override the entire
-    # method
-    def post(self, request):
-        form = CreateOfferModelForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.author = request.user
-            form.save()
-            return redirect(reverse('website:index'))
-        return render(request, 'website/add_offer.html', locals())
+    def form_valid(self, form):
+        form.author = self.request.user
+        return super().form_valid()
 
 
 class UpdateOfferView(LoginRequiredMixin, UpdateView):
