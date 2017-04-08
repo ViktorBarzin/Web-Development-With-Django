@@ -12,7 +12,8 @@
             Title: {{ offer.title }} </br>
             Category: {{ offer.category.name }} </br>
             Author: {{ offer.author }} </br>
-            From: {{ offer.created_at }}
+            From: {{ offer.created_at }} </br>
+            Description: {{ offer.description }} </br>
         </div>
         <div class="col-md-2">
             {% if offer.author == request.user %}

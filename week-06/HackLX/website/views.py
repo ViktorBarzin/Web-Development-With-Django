@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Offer, Category
 from .forms import CreateOfferModelForm, RegisterModelForm, UpdateOfferModelForm
 
@@ -38,9 +38,6 @@ class UpdateOfferView(LoginRequiredMixin, UpdateView):
     form_class = UpdateOfferModelForm
     template_name = 'website/add_offer.html'
     success_url = reverse_lazy('website:index')
-
-    def form_valid(self, form):
-        return super().form_valid(form)
 
 
 class DeleteOfferView(LoginRequiredMixin, DeleteView):
