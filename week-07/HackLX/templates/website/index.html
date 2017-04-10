@@ -14,9 +14,10 @@
             Author: {{ offer.author }} </br>
             From: {{ offer.created_at }} </br>
             Description: {{ offer.description }} </br>
+            Status: {{ offer.choices }} </br>
         </div>
         <div class="col-md-2">
-            {% if offer.author == request.user %}
+            {% if offer.author == request.user or request.user.is_superuser %}
             <form method="GET" enctype="multipart/form-data" action="{% url 'website:edit-offer' offer.id %}">
                 <button class="btn btn-warning" type="submit">Редактирай</button>
             </form>
@@ -25,7 +26,11 @@
                 {% csrf_token %}
                 <button class="btn btn-danger" type="submit">Изтрий </button>
             </form>
+            <br>
+
             {% endif %}
+            {% block manage_choice %}
+            {% endblock %}
         </div>
     </div>
 </div>
