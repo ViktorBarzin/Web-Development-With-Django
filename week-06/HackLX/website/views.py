@@ -28,9 +28,12 @@ class CreateOfferView(LoginRequiredMixin, CreateView):
     form_class = CreateOfferModelForm
     success_url = reverse_lazy('website:index')
 
+
     def form_valid(self, form):
-        form.author = self.request.user
-        return super().form_valid()
+        # offer = form.save(commit=False)
+        # offer.author = self.request.user
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateOfferView(LoginRequiredMixin, UpdateView):
@@ -49,13 +52,13 @@ class DeleteOfferView(LoginRequiredMixin, DeleteView):
 class OfferListView(ListView):
     model = Offer
     template_name = 'website/index.html'
-    paginate_by = 3
+    paginate_by = 2
+    queryset = Offer.objects.order_by('created_at').reverse()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = Offer.objects.select_related('author', 'category').all()
+        context['object_list'] = context['object_list'].select_related('author', 'category').all()
         return context
-        # object_list = 1
 
 def get_statistics(request):
     # TODO: Move logic in services
@@ -69,3 +72,4 @@ def get_statistics(request):
     # TODO: Add more statistics information
 
     return render(request, 'website/statistics.html', locals())
+
