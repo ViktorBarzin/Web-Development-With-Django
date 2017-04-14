@@ -1,0 +1,38 @@
+Collecting cookiecutter
+  Downloading cookiecutter-1.5.1-py2.py3-none-any.whl (44kB)
+Collecting click>=5.0 (from cookiecutter)
+  Downloading click-6.7-py2.py3-none-any.whl (71kB)
+Collecting jinja2-time>=0.1.0 (from cookiecutter)
+  Downloading jinja2_time-0.2.0-py2.py3-none-any.whl
+Collecting future>=0.15.2 (from cookiecutter)
+  Downloading future-0.16.0.tar.gz (824kB)
+Collecting jinja2>=2.7 (from cookiecutter)
+  Downloading Jinja2-2.9.6-py2.py3-none-any.whl (340kB)
+Collecting binaryornot>=0.2.0 (from cookiecutter)
+  Downloading binaryornot-0.4.0-py2.py3-none-any.whl
+Collecting whichcraft>=0.4.0 (from cookiecutter)
+  Downloading whichcraft-0.4.0-py2.py3-none-any.whl
+Collecting poyo>=0.1.0 (from cookiecutter)
+  Downloading poyo-0.4.1-py2.py3-none-any.whl
+Collecting arrow (from jinja2-time>=0.1.0->cookiecutter)
+  Downloading arrow-0.10.0.tar.gz (86kB)
+Collecting MarkupSafe>=0.23 (from jinja2>=2.7->cookiecutter)
+  Downloading MarkupSafe-1.0.tar.gz
+Collecting chardet>=2.0.0 (from binaryornot>=0.2.0->cookiecutter)
+  Downloading chardet-2.3.0-py2.py3-none-any.whl (180kB)
+Collecting python-dateutil (from arrow->jinja2-time>=0.1.0->cookiecutter)
+  Using cached python_dateutil-2.6.0-py2.py3-none-any.whl
+Requirement already satisfied: six>=1.5 in /root/.virtualenvs/cookie-cutter/lib/python3.5/site-packages (from python-dateutil->arrow->jinja2-time>=0.1.0->cookiecutter)
+Building wheels for collected packages: future, arrow, MarkupSafe
+  Running setup.py bdist_wheel for future: started
+  Running setup.py bdist_wheel for future: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/c2/50/7c/0d83b4baac4f63ff7a765bd16390d2ab43c93587fac9d6017a
+  Running setup.py bdist_wheel for arrow: started
+  Running setup.py bdist_wheel for arrow: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/f0/4d/9b/692f17c2b531f0435ec1a73d6f936a4c0c252f23b66d5755e6
+  Running setup.py bdist_wheel for MarkupSafe: started
+  Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/88/a7/30/e39a54a87bcbe25308fa3ca64e8ddc75d9b3e5afa21ee32d57
+Successfully built future arrow MarkupSafe
+Installing collected packages: click, python-dateutil, arrow, MarkupSafe, jinja2, jinja2-time, future, chardet, binaryornot, whichcraft, poyo, cookiecutter
+Successfully installed MarkupSafe-1.0 arrow-0.10.0 binaryornot-0.4.0 chardet-2.3.0 click-6.7 cookiecutter-1.5.1 future-0.16.0 jinja2-2.9.6 jinja2-time-0.2.0 poyo-0.4.1 python-dateutil-2.6.0 whichcraft-0.4.0
