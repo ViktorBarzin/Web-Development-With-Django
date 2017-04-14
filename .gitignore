@@ -6,6 +6,6 @@ tags
 *.un~
 
 *static*
-media/*
+*media/*
 *.svn*
 
