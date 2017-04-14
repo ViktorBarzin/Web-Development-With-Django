@@ -1,0 +1,10 @@
+<form action="" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+    {% csrf_token  %}
+    <label for="key">Key</label>
+    <input type="text" name="key" value=""/>
+    <label for="value">value</label>
+    <input type="text" name="value" value=""/>
+
+
+    <input type="submit" name="submit" value="Add Key"/>
+</form>

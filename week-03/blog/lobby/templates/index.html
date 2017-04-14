@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+{{ block.super }}
+<table>
+     {% for blog in blogposts %}
+     <tr>
+         <dt><a href={% url 'blog_info' blog.id %}>{{ blog.title }}</a></dt>
+     </tr>
+     {% endfor %}
+</table>
+{% endblock content %}
