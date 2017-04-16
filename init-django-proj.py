@@ -36,7 +36,6 @@ class DjangoCommander(object):
             os.system(command)
 
     def create_app(self, project_name, app_name):
-        import ipdb; ipdb.set_trace() # BREAKPOINT
 
         os.system('python manage.py startapp {}'.format(app_name))
         # Registering app into settings.py
