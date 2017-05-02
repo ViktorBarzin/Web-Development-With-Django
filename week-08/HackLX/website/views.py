@@ -85,8 +85,8 @@ class RejectOffer(LoginRequiredMixin, SuperUserRequiredMixin, RedirectView):
 class OfferListView(ListView):
     model = Offer
     template_name = 'website/index.html'
-    paginate_by = 2
-    queryset = Offer.objects.order_by('created_at').reverse().filter(choices='approved')
+    paginate_by = 5
+    queryset = Offer.objects.order_by('created_at').reverse().filter(choices='A')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

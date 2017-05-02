@@ -6,6 +6,8 @@ def get_all_blogs():
 
 
 def create_blogpost(title, content, tags):
+    import ipdb; ipdb.set_trace() # BREAKPOINT
+
     # Can throw exception if title > 255
     blog = BlogPost.objects.create(title=title, content=content)
     for tag in tags:
