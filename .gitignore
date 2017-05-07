@@ -9,3 +9,4 @@ tags
 *media*
 *.svn*
 
+sendgrid.env
