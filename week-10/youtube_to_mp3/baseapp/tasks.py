@@ -1,4 +1,4 @@
-from .models import AudioFile
+from baseapp.models import AudioFile
 import uuid
 from celery import shared_task
 

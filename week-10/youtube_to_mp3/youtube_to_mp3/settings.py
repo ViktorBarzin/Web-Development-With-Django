@@ -139,3 +139,4 @@ CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
 # Email settings
 FROM_EMAIL = 'downloader@youtube_downloader.com'
 EMAIL_SUBJECT = 'MP3 is ready to download!'
+SGAPIKEY = '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'

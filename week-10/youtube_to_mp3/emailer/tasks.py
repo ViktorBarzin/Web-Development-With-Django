@@ -3,12 +3,14 @@ import sendgrid
 import os
 from sendgrid.helpers.mail import *
 from celery import shared_task
-from youtube_to_mp3.settings import FROM_EMAIL, EMAIL_SUBJECT
+from youtube_to_mp3.settings import FROM_EMAIL, EMAIL_SUBJECT, SGAPIKEY
+
 
 
 @shared_task
 def send_mail(from_email, to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    # sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    sg = sendgrid.SendGridAPIClient(apikey=SGAPIKEY) # Free mails for all :)
     if not sg.apikey:
         raise ValueError('Could not find SENDGRID_API_KEY environment variable!')
     from_email = Email(from_email)
