@@ -28,7 +28,7 @@ NOTE: Make sure rabbitmq service is running with default credentials.
 
 NOTE 2: Mailing service is using sendgrid with my API key. I have left it for conveniece, but please use our own. You can setup your account at Sendgrid_ .
 
-.. _Sendgrid: www.sendgrid.com
+.. _Sendgrid: https://www.sendgrid.com
 
 Change the API Key in youtube_to_mp3/settings.py
 
