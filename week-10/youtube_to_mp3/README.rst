@@ -26,7 +26,7 @@ $ python manage.py runserver
 NOTE: Make sure rabbitmq service is running with default credentials.
 ---------------------------------------------------------------------
 
-NOTE 2: Mailing service is using sendgrid with my API key. I have left it for conveniece, but please use our own. You can setup your account at Sendgrid_ .
+NOTE 2: I am using Sendgrid as mailing service. I have set it up using an API key I own and I have left it for easier setup. Once you have set it up please change the API key and be nice ^_^ .You can setup your account at Sendgrid_.
 ---------------------------------------------------------------------
 
 .. _Sendgrid: https://www.sendgrid.com
