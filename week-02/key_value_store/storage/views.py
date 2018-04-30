@@ -15,7 +15,8 @@ def create_user_view(request):
 def store_data_view(request, identifier):
     if request.method != 'POST':
         return HttpResponse(status=405)
-    data = json.loads(request.body.decode('utf-8'))
+    data_str = str(dict(request.POST)).replace("'", '"')
+    data = json.loads(data_str)
     key = data['key']
     value = data['value']
 

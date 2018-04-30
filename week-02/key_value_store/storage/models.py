@@ -11,5 +11,5 @@ class User(models.Model):
 class KeyValue(models.Model):
     key = models.CharField(max_length=255, null=True, blank=True)
     value = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey(User, related_name='key_values')
+    user = models.ForeignKey(User, related_name='key_values', on_delete=None)
 
