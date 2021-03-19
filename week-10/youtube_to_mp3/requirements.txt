@@ -24,7 +24,7 @@ django-debug-toolbar==1.7
 django-environ==0.4.3
 django-extensions==1.7.9
 django-test-plus==1.0.17
-djangorestframework==3.6.2
+djangorestframework==3.11.2
 djangorestframework-jwt==1.10.0
 docker==2.2.1
 docker-compose==1.11.2
