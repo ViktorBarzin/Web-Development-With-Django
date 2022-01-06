@@ -1,2 +1,2 @@
-celery==4.0.2
+celery==5.2.2
 SQLAlchemy==1.1.9
