@@ -18,7 +18,7 @@ ipython==5.1.0
 ipython-genutils==0.1.0
 jedi==0.10.0
 louis==3.0.0
-Mako==1.0.6
+Mako==1.2.2
 MarkupSafe==0.23
 mccabe==0.5.3
 Naked==0.1.31
